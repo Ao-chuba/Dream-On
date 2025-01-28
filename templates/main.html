@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamOn - Dream Interpretation</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="{% static 'video/backgroundd.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="content-overlay">
+        <header>
+            <div class="logo">
+                <h1>🌠DreamOn</h1>
+            </div>
+            <nav class="nav-links">
+                <a href="#interpret-section">Interpret</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'account_logout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'account_login' %}">Login</a>
+                {% endif %}
+            </nav>
+        </header>
+
+        <main>
+            <section id="interpret-section" class="interpret-section">
+                {% if user.is_authenticated %}
+                    <h2>Enter Your Dream</h2>
+                    <div class="dream-container">
+                        {% csrf_token %}
+                        <textarea id="dream-input" placeholder="Describe your dream..." class="dream-textarea"></textarea>
+                        <button id="interpret-button" class="interpret-btn">✨ Interpret Dream</button>
+                        <div id="interpretation-result" class="interpretation-result"></div>
+                    </div>
+                {% else %}
+                    <div class="login-prompt">
+                        <h2>Welcome to DreamOn</h2>
+                        <p>Please log in to interpret your dreams</p>
+                        <a href="{% url 'account_login' %}" class="login-button">🐼 Login to Begin 🏵️</a>
+                    </div>
+                {% endif %}
+            </section>
+
+            <section class="donate-section">
+                <h2>Thank you for supporting DreamOn</h2>
+                <div class="donation-container">
+                    <button class="donation-button" onclick="thankUser()">✨Donate for Good Dream💸</button>
+                </div>
+                    <p>In case of any issues, please contact us at <br>
+                        <a href="mailto:dreamon8787@gmail.com?subject=Support%20Request&body=Hello%20DreamOn%20Team," class="email-link">
+                            dreamon8787@gmail.com
+                        </a>
+                    </p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        function thankUser() {
+            alert("Thank you for your generous support! 🌟 Your contribution means a lot.😀");
+            window.location.href="{% url 'donate'%}";
+        }
+    </script>
+
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - DreamOn</title>
+    <link rel="stylesheet" href="{% static 'css/donation.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline id="background-video">
+        <source src="{% static 'video/backgroundd.mp4' %}" type="video/mp4">
+    </video>
+
+    <!-- Content Overlay -->
+    <div class="content-overlay">
+        <header>
+            <div class="logo">
+                <h1>🌠DreamOn</h1>
+            </div>
+            <nav class="nav-links">
+                <a href="/#interpret-section">Interpret</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'account_logout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'account_login' %}">Login</a>
+                {% endif %}
+            </nav>
+        </header>
+
+        <main>
+            <section id="donate-section" class="donate-section">
+                <h2>Thank you for supporting DreamOn</h2>
+                <div class="donation-container">
+                    <span class="donate-text">✨Donate for Good Dream💸</span>
+                    <div class="qr-container">
+                        <img src="{% static 'images/qrcode.png' %}" alt="Donation Image" class="donation-image">
+                    </div>
+                </div>
+                <span class="qr-instructions">Scan this QR code with your UPI app to complete the payment</span>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
+{% comment %} Scan this QR code with your UPI app to complete the payment {% endcomment %}
+    {% comment %} <!-- Scripts -->
+    <script src="{% static 'js/qrcode.min.js' %}"></script>
+    <script src="{% static 'js/donation.js' %}"></script>
+    <script>
+        // Get amount from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const amount = urlParams.get('amount');
+
+        // Display amount
+        document.getElementById('donation-amount').innerText = `You are donating ₹${amount}`;
+
+        // UPI Payment URL construction
+        const upiId = "aochuba52@oksbi";
+        const name = "DreamOn";
+        const note = "Coffee Donation";
+        
+        // Construct URL with proper encoding
+        const url = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+        // Generate QR code with specific settings
+        const qrContainer = document.getElementById("qr-code-container");
+        qrContainer.innerHTML = "";
+        new QRCode(qrContainer, {
+            text: url,
+            width: 256,
+            height: 256,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        // Handle mobile redirect
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            qrContainer.addEventListener('click', function() {
+                window.location.href = url;
+            });
+        }
+    </script> {% endcomment %}
