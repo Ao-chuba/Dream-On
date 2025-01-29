@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load socialaccount %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Background Video -->
+    <video autoplay muted loop id="background-video">
+        <source src="{% static 'video/videoplayback.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Login Form -->
+    <div class="login-container" style="background-color:rgba(0,0,0,0.6);">
+        <h2>Welcome to DreamOn</h2>
+        <div class="media-options">
+            <a href="{% provider_login_url 'google' %}?promt=select_account" class="google-login-button">
+                <i class="fa-brands fa-google"></i>
+                <span>Login with Google</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.google-login-button').addEventListener('click',function() {
+            alert('Redirecting to Google login...');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Video Styles */
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Content Overlay */
+.content-overlay {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, rgba(124, 201, 232, 0.3), rgba(91, 72, 192, 0.3));
+    color: white;
+    z-index: 1;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #464B6A;
+    height: 60px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-left: -1rem;
+}
+
+.logo h1 {
+    font-size: 1.4rem;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    display:inline-block;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.nav-links a:hover {
+    color: #ff66ff;
+}
+/* Main Content */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 60px);
+}
+
+/* Donation Section */
+.donate-section {
+    background: rgba(45, 49, 77, 0.85);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 90%;
+    width: 600px;
+    backdrop-filter: blur(10px);
+    margin: auto;
+}
+
+.donate-section h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: white;
+}
+
+.donation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.donate-text {
+    font-size: 1.2rem;
+    color: white;
+    font-weight:600;
+    text-align:center;
+    margin: bottom 0.5rem;
+}
+
+.qr-container {
+    display: flex;
+    justify-content: center;
+}
+
+.donation-image {
+    max-width: 100%;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.qr-instructions {
+    display: block;
+    margin-top: 1rem;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .donate-section {
+        width: 90%;
+        padding: 1.2rem;
+        margin: 1rem;
+    }
+
+    .donate-section h2 {
+        font-size: 1.5rem;
+    }
+ss
+    .donate-text {
+        font-size: 2.0rem;
+    }
+
+    .donation-image {
+        width: 250px;
+    }
+
+    .qr-instructions {
+        font-size: 0.9rem;
+    }
+} 
