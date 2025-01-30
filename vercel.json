@@ -1,9 +1,14 @@
 {
-    "rewrites": [
+    "builds": [
       {
-        "source": "/(.*)",
-        "destination": "/"
+        "src": "dream_interpreter/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "dream_interpreter/wsgi.py"
       }
     ]
   }
-  
